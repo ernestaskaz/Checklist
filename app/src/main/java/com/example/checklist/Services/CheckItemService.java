@@ -29,7 +29,7 @@ public interface CheckItemService {
     @Query("SELECT * FROM all_checkitems")
     LiveData<List<CheckItem>> getAll();
 
-    @Query("SELECT * FROM all_checkitems WHERE checklistId =:checklistId ORDER BY id DESC")
+    @Query("SELECT * FROM all_checkitems WHERE checklistId =:checklistId ORDER BY item_is_done ASC, id DESC")
     LiveData<List<CheckItem>> getCheckListItems(int checklistId);
 
     @Query("SELECT * FROM all_checkitems WHERE id = :id")
