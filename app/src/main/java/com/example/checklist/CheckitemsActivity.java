@@ -1,5 +1,6 @@
 package com.example.checklist;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LifecycleOwner;
@@ -75,6 +76,8 @@ public class CheckitemsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+
+
         sharedViewModel.getCurrentCheckListById(currentCheckListId).observe(this, new Observer<CheckList>() {
             @Override
             public void onChanged(CheckList checkList) {
@@ -87,11 +90,49 @@ public class CheckitemsActivity extends AppCompatActivity {
             }
         });
 
+        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
+                super.onItemRangeChanged(positionStart, itemCount, payload);
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+//                recyclerView.smoothScrollToPosition(0);
+                recyclerView.scrollToPosition(0);
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+            }
+
+            @Override
+            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+                if (fromPosition == 0) {
+                    recyclerView.scrollToPosition(0);
+                }
+
+            }
+        });
 
         sharedViewModel.getCheckListItems(currentCheckListId).observe(this, new Observer<List<CheckItem>>() {
             @Override
             public void onChanged(List<CheckItem> list) {
                 mAdapter.submitList(list);
+                //layoutManager.scrollToPosition(0); also jumps to top but not on new added. also loses animation!
                 //padeda is dugno bet ne is originalaus 0. t.y., pridejus nauja item, 0 pzoicijoje,nepasislenka i virsu (new 0);
                 //recyclerView.smoothScrollToPosition(0);
 
@@ -110,7 +151,6 @@ public class CheckitemsActivity extends AppCompatActivity {
                     CheckItem currentCheckItem = new CheckItem(checkItemName, currentCheckListId);
                     sharedViewModel.insertCheckItem(currentCheckItem);
                     sharedViewModel.incrementCheckListItemsToDo();
-                    //mAdapter.notifyItemInserted(0); padeda i 0 pozicija patekti, taciau buginasi ir su praktiškai su kiekvienu action'u refreshina.
                     add_check_item_name.getText().clear();
                     Toast.makeText(getApplicationContext() , "Check Item Added", Toast.LENGTH_SHORT).show();
 
