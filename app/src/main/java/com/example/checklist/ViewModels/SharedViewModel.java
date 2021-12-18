@@ -121,7 +121,7 @@ public class SharedViewModel extends AndroidViewModel {
 
     public void decrementCheckListItemsToDo() {
         int currentItemsToDo = editableCheckList.getItemsToDo();
-        int decrementedItemsToDo = currentItemsToDo + 1;
+        int decrementedItemsToDo = currentItemsToDo - 1;
         editableCheckList.setItemsToDo(decrementedItemsToDo);
         updateCheckList(editableCheckList);
 
