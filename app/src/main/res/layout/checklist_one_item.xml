@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/checklist_one_list_layout"
+    android:layout_width="match_parent"
+
+    android:layout_height="150dp"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/checklist_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:text="CheckListName"
+        android:textAlignment="textStart"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/checklist_numbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:hint="0/0"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/to_do_count_icon"
+        app:layout_constraintTop_toBottomOf="@+id/checklist_name" />
+
+    <View
+        android:id="@+id/checklist_divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#E8E8E8"
+
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#34BD02"
+        android:progressTint="#008705"
+        android:progressBackgroundTint="#A8FB92"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/checklist_numbers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checklist_name"
+        app:layout_constraintVertical_bias="0.506" />
+
+    <ImageView
+        android:id="@+id/to_do_count_icon"
+        android:layout_width="28dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checklist_name"
+        app:srcCompat="@drawable/ic_baseline_flag_24"
+        app:tint="#F35E5E" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
