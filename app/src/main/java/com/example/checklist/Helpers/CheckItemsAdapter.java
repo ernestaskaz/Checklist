@@ -25,7 +25,7 @@ public class CheckItemsAdapter extends ListAdapter<CheckItem, CheckItemsAdapter.
     public CheckItemsAdapter() {
         super(DIFF_CALLBACK);
     }
-
+    //static to become available before checkitemsadapter is initialized. W/o static, it would only be available after initialization. 
     private static final DiffUtil.ItemCallback<CheckItem> DIFF_CALLBACK = new DiffUtil.ItemCallback<CheckItem>() {
         @Override
         public boolean areItemsTheSame(@NonNull CheckItem oldItem, @NonNull CheckItem newItem) {

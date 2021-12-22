@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         //TODO. hour receiver alarm timer == hours/days
 
 
+
+
         mAdapter.setOnItemClickListener(new ListOfCheckListsAdapter.OnCheckListListener() {
             @Override
             public void onCheckListClick(CheckList checkList) {

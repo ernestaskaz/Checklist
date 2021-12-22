@@ -56,6 +56,11 @@ public class ListOfCheckListsAdapter extends RecyclerView.Adapter<ListOfCheckLis
 
     }
 
+    public void setOnItemClickListener(OnCheckListListener listener) {
+        this.listener = listener;
+
+    }
+
 //    public void setContext(Context context) {
 //        this.context = context;
 //    }
@@ -88,8 +93,4 @@ public class ListOfCheckListsAdapter extends RecyclerView.Adapter<ListOfCheckLis
         void onCheckListClick(CheckList checkList);
     }
 
-    public void setOnItemClickListener(OnCheckListListener listener) {
-        this.listener = listener;
-
-    }
 }
