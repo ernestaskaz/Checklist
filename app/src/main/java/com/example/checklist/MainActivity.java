@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         mAdapter = new ListOfCheckListsAdapter();
-        mAdapter.setContext(this);
+        //mAdapter.setContext(this);
         recyclerView.setAdapter(mAdapter);
 //toolbar init
         toolbar = findViewById(R.id.home_toolbar);

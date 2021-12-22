@@ -54,7 +54,7 @@ public class CheckitemsActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         mAdapter = new CheckItemsAdapter();
-        mAdapter.setContext(this);
+       // mAdapter.setContext(this);
         recyclerView.setAdapter(mAdapter);
         //get object from MainActgivity.java
         currentCheckList = (CheckList) getIntent().getSerializableExtra("On_Clicked_Check_List");

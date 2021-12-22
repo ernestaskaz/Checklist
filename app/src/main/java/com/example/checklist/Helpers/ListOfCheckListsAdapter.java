@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ListOfCheckListsAdapter extends RecyclerView.Adapter<ListOfCheckListsAdapter.MyViewHolder> {
      private List<CheckList> listOfCheckLists = new ArrayList<>();
-     private Context context;
+    // private Context context;
      private OnCheckListListener listener;
 
 //    public ListOfCheckListsAdapter(List<CheckList> listOfCheckLists, Context context) {
@@ -56,9 +56,9 @@ public class ListOfCheckListsAdapter extends RecyclerView.Adapter<ListOfCheckLis
 
     }
 
-    public void setContext(Context context) {
-        this.context = context;
-    }
+//    public void setContext(Context context) {
+//        this.context = context;
+//    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_checkListName;

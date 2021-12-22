@@ -19,7 +19,7 @@ import com.example.checklist.R;
 
 
 public class CheckItemsAdapter extends ListAdapter<CheckItem, CheckItemsAdapter.ItemViewHolder> {
-    private Context context;
+    //private Context context;
     private CheckBoxListener checkBoxListener;
 
     public CheckItemsAdapter() {
@@ -80,7 +80,7 @@ public class CheckItemsAdapter extends ListAdapter<CheckItem, CheckItemsAdapter.
                 if (isChecked) {
                     holder.tv_checkitem.setPaintFlags(holder.tv_checkitem.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.tv_checkitem.setTextColor(Color.parseColor("#747474"));
-                    Toast.makeText(context.getApplicationContext(), "Item Done! Good Job", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(buttonView.getContext(), "Item Done! Good Job", Toast.LENGTH_SHORT).show();
                 } else {
                     holder.tv_checkitem.setPaintFlags(0);
                     holder.tv_checkitem.setTextColor(Color.parseColor("#000000"));
@@ -95,9 +95,9 @@ public class CheckItemsAdapter extends ListAdapter<CheckItem, CheckItemsAdapter.
         return getItem(position);
     }
 
-    public void setContext(Context context) {
-        this.context = context;
-    }
+//    public void setContext(Context context) {
+//        this.context = context;
+//    }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView tv_checkitem;
