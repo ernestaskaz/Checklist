@@ -3,8 +3,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -24,8 +22,6 @@ import com.example.checklist.Entities.CheckList;
 import com.example.checklist.Helpers.CheckItemsAdapter;
 import com.example.checklist.ViewModels.SharedViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class CheckitemsActivity extends AppCompatActivity {
@@ -38,7 +34,6 @@ public class CheckitemsActivity extends AppCompatActivity {
     private EditText add_check_item_name;
     private CheckList currentCheckList;
     private int currentCheckListId;
-    private List<CheckItem> pureCheckItemsById;
 
 
 
@@ -58,7 +53,6 @@ public class CheckitemsActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        // nuo cia adapteri perkelus i onchanged, is naujo sukurs lista ir pakeis dydi. reiskia reikia pakeisti dydi ten.
         mAdapter = new CheckItemsAdapter();
         mAdapter.setContext(this);
         recyclerView.setAdapter(mAdapter);
@@ -109,7 +103,7 @@ public class CheckitemsActivity extends AppCompatActivity {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
-//                recyclerView.smoothScrollToPosition(0);
+//                recyclerView.smoothScrollToPosition(0); need override.
                 recyclerView.scrollToPosition(0);
             }
 
@@ -134,7 +128,6 @@ public class CheckitemsActivity extends AppCompatActivity {
                 mAdapter.submitList(list);
                 //layoutManager.scrollToPosition(0); also jumps to top but not on new added. also loses animation!
                 //padeda is dugno bet ne is originalaus 0. t.y., pridejus nauja item, 0 pzoicijoje,nepasislenka i virsu (new 0);
-                //recyclerView.smoothScrollToPosition(0);
 
             }
         });
@@ -176,6 +169,9 @@ public class CheckitemsActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                if (mAdapter.getCurrentCheckItem(viewHolder.getAdapterPosition()).getDone() == true) {
+                    sharedViewModel.decrementCheckListItemsDone();
+                }
                 sharedViewModel.deleteCheckItem(mAdapter.getCurrentCheckItem(viewHolder.getAdapterPosition()));
                 sharedViewModel.decrementCheckListItemsToDo();
                 Toast.makeText(getApplicationContext(), "CheckItem deleted", Toast.LENGTH_SHORT).show();

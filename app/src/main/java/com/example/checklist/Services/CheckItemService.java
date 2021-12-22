@@ -10,11 +10,12 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.checklist.Entities.CheckItem;
-import com.example.checklist.Entities.CheckList;
 
 import java.util.List;
 
 @Dao
+//because Room auto generates method bodies. no need for implementation as in Spring project.
+//Why is reference reversed between DB and DAO? Spring DAO references repo.
 public interface CheckItemService {
 
     @Insert(onConflict = REPLACE)
@@ -28,20 +29,14 @@ public interface CheckItemService {
 
     @Query("SELECT * FROM all_checkitems")
     LiveData<List<CheckItem>> getAll();
-
+    // LiveData reaguoja į bazės pakeitimus ("stebi ją") ir iškart siunčia atnaujintą informaciją į activity/ies.
     @Query("SELECT * FROM all_checkitems WHERE checklistId =:checklistId ORDER BY item_is_done ASC, id DESC")
     LiveData<List<CheckItem>> getCheckListItems(int checklistId);
-
-    @Query("SELECT * FROM all_checkitems WHERE id = :id")
-    CheckItem getById(int id);
-
-    @Query("DELETE FROM all_checkitems WHERE id = :id")
-    void deleteById(int id);
-
     @Query("SELECT * FROM all_checkitems WHERE checklistId =:checklistId")
     List<CheckItem> getPureCheckItemsByListId(int checklistId);
     @Update
     void updateCheckItemList(List<CheckItem> checkItemList);
+    //TODO. Whats more efficient - update each item in For Loop (checkitemsactivity) or create List and update whole list at once? Speed? Logic? Readability?
 
 
 }

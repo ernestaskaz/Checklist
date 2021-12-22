@@ -8,17 +8,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.checklist.Entities.CheckList;
 import com.example.checklist.Helpers.ListOfCheckListsAdapter;
 import com.example.checklist.ViewModels.SharedViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,11 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        getPureCheckLists = sharedViewModel.getAllPureCheckLists();
-//        System.out.println("wow purechecklist AHAHA" + getPureCheckLists);
-
-
-        //add new checklist, move to add activity
+        //add new checklist
         addNewCheckListFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

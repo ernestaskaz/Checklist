@@ -10,18 +10,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.checklist.CheckitemsActivity;
 import com.example.checklist.Entities.CheckItem;
 import com.example.checklist.R;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class CheckItemsAdapter extends ListAdapter<CheckItem, CheckItemsAdapter.ItemViewHolder> {
     private Context context;
